@@ -23,14 +23,14 @@ class _ProfilePageState extends State<ProfilePage> {
     showDialog(
       context: context, builder: (context) {
       return AlertDialog(
-        title: const Text("Edit Profile"),
-        content: const Text("Not Editable."),
+        title:  Text("Edit Profile"),
+        content:  Text("Not Editable."),
         actions: [
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            child: const Text("Close"),
+            child:  Text("Close"),
           )
         ],
       );
@@ -40,15 +40,20 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    Color green = const Color(0xff4f7c6a);
+    Color green =  Color(0xff4f7c6a);
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.arrow_back, color: Color(0xff407362)),
-        title: const Text("Profile",
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back), color: Color(0xff407362),
+            onPressed: (){
+              Navigator.pop(context);
+            },
+        ),
+        title:  Text("Profile",
           style: TextStyle(
             color: Color(0xff407362),
             fontSize: 30,
@@ -57,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.edit, color: Color(0xff407362)),
+            icon:  Icon(Icons.edit, color: Color(0xff407362)),
             onPressed: editProfile,
           )
         ],
@@ -65,32 +70,31 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            /// TOP CARD
             Container(
-              margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.fromLTRB(70,10,70,10),
+              margin:  EdgeInsets.all(16),
+              padding:  EdgeInsets.fromLTRB(70,10,70,10),
               decoration: BoxDecoration(
                 color: Color(0xff407362),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5), // Shadow color
-                    spreadRadius: 5, // How much the shadow spreads
-                    blurRadius: 7, // How blurred the shadow is
-                    offset: Offset(0, 3), // Horizontal and vertical offset
+                    color: Colors.grey,
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
+                   SizedBox(height: 20),
                   CircleAvatar(
                     radius: 100,
-                    backgroundImage: AssetImage("assets/images/hamim2.jpg"),
+                    //backgroundImage: AssetImage("assets/images/hamim2.jpg"),
                   ),
-                  const SizedBox(height: 20),
+                   SizedBox(height: 20),
                   Container(
-                    padding: const EdgeInsets.symmetric(
+                    padding:  EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -98,32 +102,32 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     child: Text(
                       name,
-                      style: const TextStyle(
+                      style:  TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                   SizedBox(height: 10),
 
                 ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.all(20),
+              margin:  EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5), // Shadow color
-                    spreadRadius: 5, // How much the shadow spreads
-                    blurRadius: 7, // How blurred the shadow is
-                    offset: Offset(0, 3), // Horizontal and vertical offset
+                    color: Colors.grey,
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    //offset: Offset(0, 3),
                   ),
                 ],
               ),
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment:
                 MainAxisAlignment.spaceAround,
                 children: [
@@ -170,7 +174,6 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(height: 20,),
 
 
-            /// EXPANDABLE SECTIONS
             buildSection(0, "ACADEMIC INFO", green),
             buildSection(1, "MATERIALS", green),
             buildSection(2, "RESULTS", green),
@@ -185,32 +188,32 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       children: [
         ListTile(
-          leading: const Icon(Icons.event_note_rounded),
+          leading:  Icon(Icons.event_note_rounded),
           title: Text(title,
-              style: const TextStyle(
+              style:  TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold)),
           trailing: AnimatedRotation(
             turns: isExpanded[index] ? 0.25 : 0,
-            duration: const Duration(milliseconds: 300),
+            duration:  Duration(milliseconds: 300),
             child: IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
+              icon:  Icon(Icons.arrow_forward_ios),
               onPressed: () => toggleSection(index),
             ),
           ),
         ),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration:  Duration(milliseconds: 300),
           height: isExpanded[index] ? 80 : 0,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding:  EdgeInsets.symmetric(horizontal: 20),
           child: isExpanded[index]
-              ? const Align(
+              ?  Align(
             alignment: Alignment.centerLeft,
             child: Text(
                 "Info not given yet."),
           )
               : null,
         ),
-        const Divider()
+         Divider()
       ],
     );
   }

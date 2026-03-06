@@ -18,8 +18,13 @@ class _QrScreenState extends State<QrScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: const Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
-        title: const Text("QR SCANNER",
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios), color:  Color(0xff407362),
+            onPressed: (){
+              Navigator.pop(context);
+            },
+        ),
+        title:  Text("QR SCANNER",
           style: TextStyle(
             color: Color(0xff407362),
             fontSize: 25,
@@ -51,7 +56,7 @@ class _QrScreenState extends State<QrScreen> {
                         ),
                       );
                     },
-                    label: const Text('SCAN QR',
+                    label:  Text('SCAN QR',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -69,7 +74,7 @@ class _QrScreenState extends State<QrScreen> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
 
-          selectedItemColor: Colors.green[800],
+          selectedItemColor: Color(0xff407362),
           unselectedItemColor: Colors.grey,
 
           showSelectedLabels: false,
@@ -79,7 +84,7 @@ class _QrScreenState extends State<QrScreen> {
 
           items: [
             BottomNavigationBarItem(
-              icon: InkWell(child: const Icon(Icons.home),
+              icon: InkWell(child:  Icon(Icons.home),
                 onTap: (){
                   Navigator.push(
                     context,
@@ -91,12 +96,12 @@ class _QrScreenState extends State<QrScreen> {
               ),
               label: "Home",
             ),
-            const BottomNavigationBarItem(
+             BottomNavigationBarItem(
               icon: Icon(Icons.directions_bus),
               label: "Bus",
             ),
             BottomNavigationBarItem(
-              icon: InkWell(child: const Icon(Icons.note_alt_sharp),
+              icon: InkWell(child:  Icon(Icons.note_alt_sharp),
                 onTap: (){
                   Navigator.push(
                     context,
@@ -108,12 +113,12 @@ class _QrScreenState extends State<QrScreen> {
               ),
               label: "Post",
             ),
-            const BottomNavigationBarItem(
+             BottomNavigationBarItem(
               icon: Icon(Icons.qr_code),
               label: "QR",
             ),
             BottomNavigationBarItem(
-              icon: InkWell(child: const Icon(Icons.inventory),
+              icon: InkWell(child:  Icon(Icons.inventory),
                 onTap: (){
                   Navigator.push(
                     context,

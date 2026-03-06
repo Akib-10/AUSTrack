@@ -11,8 +11,14 @@ class LostFoundPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon:const Icon(Icons.arrow_back_ios), color: const Color(0xff407362),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
         title: const Text("Lost & Found"),
-        backgroundColor: Colors.green[300],
+        backgroundColor: Colors.white,
       ),
 
       // Bottom Navigation Bar (UI Only)
@@ -20,7 +26,7 @@ class LostFoundPage extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
 
-        selectedItemColor: Colors.green,
+        selectedItemColor: Color(0xff407362),
         unselectedItemColor: Colors.grey,
 
         showSelectedLabels: false,
@@ -244,12 +250,16 @@ class ItemCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
+              backgroundColor: Color(0xff407362),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
-            child: const Text("Details"),
+            child: const Text("Details",
+              style: TextStyle(
+                color: Colors.white
+              ),
+            ),
           )
         ],
       ),

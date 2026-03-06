@@ -28,7 +28,12 @@ class _ScanQrCodeScreenState extends State<ScanQrCodeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: const Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
+        leading: IconButton(
+          icon:const Icon(Icons.arrow_back_ios), color: const Color(0xff407362),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
         title: const Text("QR Code Scanner",
           style: TextStyle(
             color: Color(0xff407362),

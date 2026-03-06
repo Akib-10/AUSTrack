@@ -9,13 +9,12 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-
           ClipPath(
             clipper: WaveClipper(),
             child: Container(
               height: 420,
               width: double.infinity,
-              color: const Color(0xff407362),
+              color: Color(0xff407362),
             ),
           ),
 
@@ -23,33 +22,26 @@ class WelcomeScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.45,
-              padding: const EdgeInsets.all(50),
+              padding: EdgeInsets.all(50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  const Text(
+                  Text(
                     "Welcome",
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900),
                   ),
 
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10),
 
-                  const Text(
-                    "Hello AUSTIAN!!",
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                  Text("Hello AUSTIAN!!", style: TextStyle(color: Colors.black)),
 
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
 
                   Align(
                     alignment: Alignment.bottomRight,
                     child: FloatingActionButton(
-                      backgroundColor: const Color(0xff407362),
+                      backgroundColor: Color(0xff407362),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -58,12 +50,9 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Icon(
-                          Icons.arrow_forward,
-                        color:Colors.white
-                      ),
+                      child: Icon(Icons.arrow_forward, color: Colors.white),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -74,17 +63,17 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-class WaveClipper extends CustomClipper<Path>{
+class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    Path path=Path();
+    Path path = Path();
 
-    path.lineTo(0, size.height-100);
+    path.lineTo(0, size.height - 100);
     path.quadraticBezierTo(
-        size.width * 0.25,
-        size.height,
-        size.width * 0.5,
-        size.height - 60,
+      size.width * 0.25,
+      size.height,
+      size.width * 0.5,
+      size.height - 60,
     );
 
     path.quadraticBezierTo(
@@ -102,5 +91,4 @@ class WaveClipper extends CustomClipper<Path>{
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-
 }
