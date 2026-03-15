@@ -16,55 +16,59 @@ class _QrScreenState extends State<QrScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios), color:  Color(0xff407362),
-            onPressed: (){
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color:  Color(0xff407362)),
+            onPressed: () {
               Navigator.pop(context);
             },
-        ),
-        title:  Text("QR SCANNER",
-          style: TextStyle(
-            color: Color(0xff407362),
-            fontSize: 25,
-            fontWeight: FontWeight.w900,
+          ),
+          centerTitle: true,
+          title: Text(
+            "QR SCANNER",
+            style: TextStyle(
+              color:  Color(0xff407362),
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
 
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100,
-                width: 200,
-                child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff407362),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadiusGeometry.circular(20)
-                        )
+          child: SizedBox(
+            height: 100,
+            width: 200,
+            child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff407362),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(20)
                     ),
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ScanQrCodeScreen(),
-                        ),
-                      );
-                    },
-                    label:  Text('SCAN QR',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w900
-                      ),
-                    )),
-              )
-            ],
+                    elevation: 5,
+                ),
+                icon: const Icon(Icons.qr_code_scanner, size: 35,color: Colors.white,),
+                label:  Text('SCAN QR',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900
+                  ),
+                ),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScanQrCodeScreen(),
+                    ),
+                  );
+                },
+            ),
           ),
         ),
       ),

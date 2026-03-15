@@ -29,12 +29,19 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Welcome",
-                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900),
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xff407362),
+                    ),
                   ),
 
                   SizedBox(height: 10),
 
-                  Text("Hello AUSTIAN!!", style: TextStyle(color: Colors.black)),
+                  Text("Hello AUSTIAN!!", style: TextStyle(
+                      color: Color(0xff407362),
+                      fontSize: 20,
+                  )),
 
                   SizedBox(height: 30),
 

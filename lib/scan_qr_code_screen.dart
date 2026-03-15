@@ -26,19 +26,23 @@ class _ScanQrCodeScreenState extends State<ScanQrCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon:const Icon(Icons.arrow_back_ios), color: const Color(0xff407362),
-          onPressed: (){
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text("QR Code Scanner",
-          style: TextStyle(
-            color: Color(0xff407362),
-            fontSize: 25,
-            fontWeight: FontWeight.w900,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text(
+            "QR Code Scanner",
+            style: TextStyle(
+              color: Color(0xff407362),
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
@@ -51,23 +55,26 @@ class _ScanQrCodeScreenState extends State<ScanQrCodeScreen> {
               Text(qrResult,style: TextStyle(color: Color(0xff407362)),),
               SizedBox(height: 20),
               SizedBox(
-                height: 100,
-                width: 200,
+                height: 60,
+                width: 220,
                 child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff407362),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadiusGeometry.circular(20)
-                        )
+                        ),
+                        elevation: 5,
                     ),
-                    onPressed: scanQR,
+                    icon: const Icon(Icons.qr_code_scanner, size: 30, color: Colors.white),
                     label: const Text('SCAN CODE',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 22,
                           fontWeight: FontWeight.w900
                       ),
-                    )),
+                    ),
+                    onPressed: scanQR,
+                ),
               )
             ],
           ),
