@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'home_screen.dart';
-import 'lost_found_screen.dart';
-import 'missing_notes_page.dart';
 import 'scan_qr_code_screen.dart';
 
 class QrScreen extends StatefulWidget {
@@ -70,71 +66,6 @@ class _QrScreenState extends State<QrScreen> {
                 },
             ),
           ),
-        ),
-      ),
-
-      bottomNavigationBar: SafeArea(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-
-          selectedItemColor: Color(0xff407362),
-          unselectedItemColor: Colors.grey,
-
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-
-          currentIndex: 3,
-
-          items: [
-            BottomNavigationBarItem(
-              icon: InkWell(child:  Icon(Icons.home),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Homepage(),
-                    ),
-                  );
-                },
-              ),
-              label: "Home",
-            ),
-             BottomNavigationBarItem(
-              icon: Icon(Icons.directions_bus),
-              label: "Bus",
-            ),
-            BottomNavigationBarItem(
-              icon: InkWell(child:  Icon(Icons.note_alt_sharp),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MissingNotesPage(),
-                    ),
-                  );
-                },
-              ),
-              label: "Post",
-            ),
-             BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code),
-              label: "QR",
-            ),
-            BottomNavigationBarItem(
-              icon: InkWell(child:  Icon(Icons.inventory),
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LostFoundPage(),
-                    ),
-                  );
-                },
-              ),
-              label: "Lost",
-            ),
-          ],
         ),
       ),
     );

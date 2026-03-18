@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
-import 'lost_found_screen.dart';
-import 'qr_screen.dart';
-
 class MissingNotesPage extends StatelessWidget {
   const MissingNotesPage({super.key});
 
@@ -14,94 +10,33 @@ class MissingNotesPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: lightGrey,
-      bottomNavigationBar: BottomNavigationBar(
-        //type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-
-        selectedItemColor: Color(0xff407362),
-        unselectedItemColor: Colors.grey,
-
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-
-        currentIndex: 2,
-
-        items: [
-          BottomNavigationBarItem(
-            icon: InkWell(child:  Icon(Icons.home),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Homepage(),
-                  ),
-                );
-              },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color:  Color(0xff407362)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          centerTitle: true,
+          title: Text(
+            "Missing Notes",
+            style: TextStyle(
+              color:  Color(0xff407362),
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
             ),
-            label: "Home",
           ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bus),
-            label: "Bus",
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.note_alt_sharp),
-            label: "Post",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child:  Icon(Icons.qr_code),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  QrScreen(),
-                  ),
-                );
-              },
-            ),
-            label: "QR",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child:  Icon(Icons.inventory),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  LostFoundPage(),
-                  ),
-                );
-              },
-            ),
-            label: "Lost",
-          ),
-        ],
+        ),
       ),
+
       body: SafeArea(
         child: Column(
           children: [
-            // Top Bar
-            Padding(
-              padding:  EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back_ios), color:  Color(0xff407362),
-                      onPressed: (){
-                      Navigator.pop(context);
-                      },
-                  ),
-                   SizedBox(width: 16),
-                   Text(
-                    "Missing Notes",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
 
-            // By Date / By Course Toggle
             Container(
               margin:  EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
@@ -145,7 +80,6 @@ class MissingNotesPage extends StatelessWidget {
 
              SizedBox(height: 16),
 
-            // Scrollable Date Row
             SizedBox(
               height: 90,
               child: ListView(
@@ -165,7 +99,6 @@ class MissingNotesPage extends StatelessWidget {
 
              SizedBox(height: 10),
 
-            // Scrollable Notes List
             Expanded(
               child: ListView(
                 padding:  EdgeInsets.all(16),
@@ -213,7 +146,7 @@ class MissingNotesPage extends StatelessWidget {
     );
   }
 
-  // Date Card Widget
+
   Widget dateCard(String date, String day, bool selected) {
     Color primaryGreen =  Color(0xFF3E6F5E);
 

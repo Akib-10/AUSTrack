@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'lost_found_screen.dart';
-import 'missing_notes_page.dart';
 import 'profile_screen.dart';
-import 'qr_screen.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -11,69 +8,6 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-
-        selectedItemColor: Color(0xff3F7862),
-        unselectedItemColor: Colors.grey,
-
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-
-        currentIndex: 0,
-
-        items: [
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.home)),
-            label: "Home",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bus),
-            label: "Bus",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.note_alt_sharp),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MissingNotesPage(),
-                  ),
-                );
-              },
-            ),
-            label: "Post",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.qr_code),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const QrScreen(),
-                  ),
-                );
-              },
-            ),
-            label: "QR",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.inventory),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LostFoundPage(),
-                  ),
-                );
-              },
-            ),
-            label: "Lost",
-          ),
-        ],
-      ),
-
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(95.0),
         child: AppBar(

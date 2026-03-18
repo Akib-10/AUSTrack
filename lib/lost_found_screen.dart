@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
-import 'missing_notes_page.dart';
-import 'qr_screen.dart';
 
 class LostFoundPage extends StatelessWidget {
   const LostFoundPage({super.key});
@@ -10,81 +7,28 @@ class LostFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon:const Icon(Icons.arrow_back_ios), color: const Color(0xff407362),
-          onPressed: (){
-            Navigator.pop(context);
-          },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color:  Color(0xff407362)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          centerTitle: true,
+          title: Text(
+            "Lost & Found",
+            style: TextStyle(
+              color:  Color(0xff407362),
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-        title: const Text("Lost & Found"),
-        backgroundColor: Colors.white,
       ),
-
-      // Bottom Navigation Bar (UI Only)
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-
-        selectedItemColor: Color(0xff407362),
-        unselectedItemColor: Colors.grey,
-
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-
-        currentIndex: 4,
-
-        items: [
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.home),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Homepage(),
-                  ),
-                );
-              },
-            ),
-            label: "Home",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bus),
-            label: "Bus",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.note_alt_sharp),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MissingNotesPage(),
-                  ),
-                );
-              },
-            ),
-            label: "Post",
-          ),
-          BottomNavigationBarItem(
-            icon: InkWell(child: const Icon(Icons.qr_code),
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const QrScreen(),
-                  ),
-                );
-              },
-            ),
-            label: "QR",
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.inventory),
-            label: "Lost",
-          ),
-        ],
-      ),
-
       body: Column(
         children: [
 

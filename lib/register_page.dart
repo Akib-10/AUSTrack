@@ -1,3 +1,4 @@
+import 'package:aust_track/bottomnavigation_page.dart';
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
@@ -112,7 +113,7 @@ class RegisterPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Homepage(),
+                            builder: (context) => const Navigation(),
                           ),
                         );
                       },
