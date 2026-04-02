@@ -11,17 +11,20 @@ class MissingNotesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: lightGrey,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
+        preferredSize: Size.fromHeight(95.0),
         child: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color:  Color(0xff407362)),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          toolbarHeight: 95.0,
+          leadingWidth: 75.0,
+
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
+            child: Image.asset(
+              "assets/images/app-logo.png",
+              height: 80.0,
+              width: 80.0,
+            ),
           ),
-          centerTitle: true,
+          centerTitle: false,
           title: Text(
             "Missing Notes",
             style: TextStyle(

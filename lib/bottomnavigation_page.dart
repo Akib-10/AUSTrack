@@ -31,7 +31,7 @@ class _NavigationState extends State<Navigation> {
 
       bottomNavigationBar: Container(
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 22),
 
         child: GNav(
           selectedIndex: _currentIndex,
@@ -58,7 +58,7 @@ class _NavigationState extends State<Navigation> {
           iconSize: 24,
 
           tabBackgroundColor: const Color(0xff407362).withValues(alpha: 0.1),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
 
           tabs: const [
             GButton(
@@ -79,7 +79,7 @@ class _NavigationState extends State<Navigation> {
             ),
             GButton(
               icon: Icons.inventory,
-              text: 'Lost & Found',
+              text: 'Lost',
             ),
           ],
         ),

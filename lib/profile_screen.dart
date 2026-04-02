@@ -53,6 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Navigator.pop(context);
             },
         ),
+        centerTitle: true,
         title:  Text("Profile",
           style: TextStyle(
             color: Color(0xff407362),

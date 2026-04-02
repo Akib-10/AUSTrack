@@ -1,144 +1,201 @@
 import 'package:aust_track/bottomnavigation_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:aust_track/services/auth_service.dart';
 
-import 'home_screen.dart';
-
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  final AuthService _authService = AuthService();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _register() async {
+    final name = _nameController.text.trim();
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    final confirmPassword = _confirmPasswordController.text.trim();
+
+    if (name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      _showSnackBar("Please fill in all fields.");
+      return;
+    }
+
+    if (password != confirmPassword) {
+      _showSnackBar("Passwords do not match.");
+      return;
+    }
+
+    if (password.length < 6) {
+      _showSnackBar("Password must be at least 6 characters.");
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      await _authService.register(name: name, email: email, password: password);
+
+      if (!mounted) return;
+      _showSnackBar("Account created successfully!");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Navigation()),
+      );
+    } on FirebaseAuthException catch (e) {
+      _showSnackBar(_authService.getErrorMessage(e.code));
+    } catch (e) {
+      _showSnackBar("An unexpected error occurred.");
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: const Color(0xff407362),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      resizeToAvoidBottomInset: true,
+      body: Column(
         children: [
           ClipPath(
             clipper: WaveClipper(),
             child: Container(
               height: 170,
               width: double.infinity,
-              color: Color(0xff407362),
+              color: const Color(0xff407362),
             ),
           ),
 
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              padding: EdgeInsets.all(25),
-
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Register",
-                    style: TextStyle(fontSize: 30,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xff407362)
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xff407362),
                     ),
                   ),
-
-                  SizedBox(height: 25),
-
-                  Text("Full Name"),
-                  SizedBox(height: 8),
-
+                  const SizedBox(height: 25),
+                  const Text("Full Name"),
+                  const SizedBox(height: 8),
                   TextField(
+                    controller: _nameController,
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       hintText: "Enter your full name",
-                      prefixIcon: Icon(Icons.person_outline),
+                      prefixIcon: const Icon(Icons.person_outline),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20),
-
-                  Text("Email"),
-                  SizedBox(height: 8),
-
+                  const SizedBox(height: 20),
+                  const Text("Email"),
+                  const SizedBox(height: 8),
                   TextField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "demo@email.com",
-                      prefixIcon: Icon(Icons.email_outlined),
+                      prefixIcon: const Icon(Icons.email_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20),
-
-                  Text("Password"),
-                  SizedBox(height: 8),
-
+                  const SizedBox(height: 20),
+                  const Text("Password"),
+                  const SizedBox(height: 8),
                   TextField(
+                    controller: _passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Enter your password",
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: const Icon(Icons.lock_outline),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20),
-
-                  Text("Confirm Password"),
-                  SizedBox(height: 8),
-
+                  const SizedBox(height: 20),
+                  const Text("Confirm Password"),
+                  const SizedBox(height: 8),
                   TextField(
+                    controller: _confirmPasswordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Re-enter your password",
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: const Icon(Icons.lock_outline),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 30),
-
+                  const SizedBox(height: 30),
                   SizedBox(
                     width: double.infinity,
                     height: 55,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff407362),
+                        backgroundColor: const Color(0xff407362),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Navigation(),
-                          ),
-                        );
-                      },
-                      child: Text(
+                      onPressed: _isLoading ? null : _register,
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : const Text(
                         "Register",
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20),
-
+                  const SizedBox(height: 20),
                   Center(
                     child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                      onTap: () => Navigator.pop(context),
                       child: Text.rich(
                         TextSpan(
                           text: "Already have an account? ",
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                           children: [
                             TextSpan(
                               text: "Login",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Color(0xff407362),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -148,6 +205,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -162,25 +220,17 @@ class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-
     path.lineTo(0, size.height - 100);
     path.quadraticBezierTo(
-      size.width * 0.5,
-      size.height - 150,
-      size.width * 0.5,
-      size.height - 80,
+      size.width * 0.5, size.height - 150,
+      size.width * 0.5, size.height - 80,
     );
-
     path.quadraticBezierTo(
-      size.width * 0.5,
-      size.height,
-      size.width,
-      size.height - 80,
+      size.width * 0.5, size.height,
+      size.width, size.height - 80,
     );
-
     path.lineTo(size.width, 0);
     path.close();
-
     return path;
   }
 
