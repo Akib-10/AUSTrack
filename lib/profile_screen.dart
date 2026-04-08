@@ -8,214 +8,235 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final String name = "Shahriar Hamim";
-  //bool isImage1 = true;
+  String name = "Abrar Fahad Bin Patwary";
+  String profilePic = 'assets/images/hamim2.jpg';
 
-  List<bool> isExpanded = [false, false, false, false];
-
-  void toggleSection(int index) {
-    setState(() {
-      isExpanded[index] = !isExpanded[index];
-    });
-  }
-
-  void editProfile() {
-    showDialog(
-      context: context, builder: (context) {
-      return AlertDialog(
-        title:  Text("Edit Profile"),
-        content:  Text("Not Editable."),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child:  Text("Close"),
-          )
-        ],
-      );
-    },
-    );
-  }
+  TextEditingController editControlling = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Color green =  Color(0xff4f7c6a);
-
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 10,
         leading: IconButton(
-            icon: Icon(Icons.arrow_back), color: Color(0xff407362),
-            onPressed: (){
-              Navigator.pop(context);
-            },
+          onPressed: () {
+            Navigator.pop(context); // FIXED: This takes you back to Homepage
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+          color: const Color(0XFF45735D),
         ),
-        centerTitle: true,
-        title:  Text("Profile",
+        title: const Text(
+          "Profile",
           style: TextStyle(
-            color: Color(0xff407362),
             fontSize: 30,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.bold,
+            color: Color(0XFF45735D),
           ),
         ),
         actions: [
           IconButton(
-            icon:  Icon(Icons.edit, color: Color(0xff407362)),
-            onPressed: editProfile,
+            onPressed: editWindow,
+            icon: const Icon(Icons.edit, color: Color(0XFF45735D)),
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin:  EdgeInsets.all(16),
-              padding:  EdgeInsets.fromLTRB(70,10,70,10),
-              decoration: BoxDecoration(
-                color: Color(0xff407362),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                   SizedBox(height: 20),
-                  CircleAvatar(
-                    radius: 100,
-                    //backgroundImage: AssetImage("assets/images/hamim2.jpg"),
-                  ),
-                   SizedBox(height: 20),
-                  Container(
-                    padding:  EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text(
-                      name,
-                      style:  TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                   SizedBox(height: 10),
+      body: SingleChildScrollView(child: detailsCard()),
+    );
+  }
 
-                ],
+  Widget detailsCard() => Center(
+    child: SizedBox(
+      width: double.infinity,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: [
+          Column(
+            children: [
+              Container(
+                height: 400,
+                width: double.infinity,
+                margin: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF45735D),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+              const SizedBox(height: 10),
+              whiteBox(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    expantionable(Icons.assignment_outlined, "ACADEMIC INFO", [
+                      const Text("Current CGPA: 3.2", style: TextStyle(fontSize: 16)),
+                      const Text("Credits Completed: 59.75", style: TextStyle(fontSize: 16)),
+                    ]),
+                    const Divider(color: Color(0xFF45735D), thickness: 1, indent: 10, endIndent: 10),
+                    expantionable(Icons.folder_open_outlined, "MATERIALS", [
+                      const Text("Lecture_Notes.pdf", style: TextStyle(fontSize: 16)),
+                    ]),
+                    const Divider(color: Color(0xFF45735D), thickness: 1, indent: 10, endIndent: 10),
+                    expantionable(Icons.assessment_outlined, "RESULTS", [
+                      const Text("Spring 2024: Published", style: TextStyle(fontSize: 16)),
+                    ]),
+                    const Divider(color: Color(0xFF45735D), thickness: 1, indent: 10, endIndent: 10),
+                    expantionable(Icons.payments_outlined, "FEES & PAYMENTS", [
+                      const Text("Spring 2025, Status: Paid", style: TextStyle(fontSize: 16)),
+                    ]),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            top: 120,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+              child: const CircleAvatar(
+                radius: 100,
+                // Note: Ensure this asset is defined in pubspec.yaml
+                backgroundImage: AssetImage('Assets/Images/ProfilePic.jpeg'),
               ),
             ),
-            Container(
-              margin:  EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(20),
+          ),
+          Positioned(
+            top: 380,
+            left: 45,
+            right: 45,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xFF67A185),
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: Colors.white, width: 4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey,
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    //offset: Offset(0, 3),
+                    color: Colors.black,
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
                   ),
                 ],
               ),
-              child:  Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Text("ID"),
-                      SizedBox(height: 5),
-                      Text("106",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                    ],
+              child: Center(
+                child: Text(
+                  name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
                   ),
-                  Column(
-                    children: [
-                      Text("Dept"),
-                      SizedBox(height: 5),
-                      Text("CSE",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text("Year/Sem"),
-                      SizedBox(height: 5),
-                      Text("2/1",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Icon(
-                        Icons.more_horiz,
-                      )
-                    ],
-                  )
-                ],
+                ),
               ),
             ),
-            SizedBox(height: 20,),
+          ),
+        ],
+      ),
+    ),
+  );
 
-
-            buildSection(0, "ACADEMIC INFO", green),
-            buildSection(1, "MATERIALS", green),
-            buildSection(2, "RESULTS", green),
-            buildSection(3, "FEES & PAYMENTS", green),
-          ],
-        ),
+  Widget whiteBox() {
+    return Container(
+      margin: const EdgeInsets.all(15),
+      width: double.infinity,
+      height: 100,
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF5F7F6),
+        borderRadius: BorderRadius.circular(25.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          columnForInfo("ID", "106"),
+          columnForInfo("Dept", "CSE"),
+          columnForInfo("Year/Sem", "2/1"),
+          coloumnForDetails("Details"),
+        ],
       ),
     );
   }
 
-  Widget buildSection(int index, String title, Color color) {
+  Widget columnForInfo(String label, String info) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        ListTile(
-          leading:  Icon(Icons.event_note_rounded),
-          title: Text(title,
-              style:  TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold)),
-          trailing: AnimatedRotation(
-            turns: isExpanded[index] ? 0.25 : 0,
-            duration:  Duration(milliseconds: 300),
-            child: IconButton(
-              icon:  Icon(Icons.arrow_forward_ios),
-              onPressed: () => toggleSection(index),
-            ),
-          ),
-        ),
-        AnimatedContainer(
-          duration:  Duration(milliseconds: 300),
-          height: isExpanded[index] ? 80 : 0,
-          padding:  EdgeInsets.symmetric(horizontal: 20),
-          child: isExpanded[index]
-              ?  Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-                "Info not given yet."),
-          )
-              : null,
-        ),
-         Divider()
+        Text(label, style: const TextStyle(color: Color(0XFF45735D), fontSize: 18)),
+        const SizedBox(height: 4),
+        Text(info, style: const TextStyle(color: Color(0xFF45735D), fontWeight: FontWeight.bold, fontSize: 24)),
       ],
+    );
+  }
+
+  Widget coloumnForDetails(String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(label, style: const TextStyle(color: Color(0XFF45735D), fontSize: 18)),
+        const SizedBox(height: 4),
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: const BoxDecoration(color: Colors.black12, shape: BoxShape.circle),
+          child: const Icon(Icons.more_horiz, size: 24, color: Color(0XFF45735D)),
+        ),
+      ],
+    );
+  }
+
+  Widget expantionable(IconData icon, String title, List<Widget> children) {
+    return Theme(
+      data: ThemeData().copyWith(dividerColor: Colors.transparent),
+      child: ExpansionTile(
+        leading: Icon(icon, color: const Color(0xFF45735D), size: 28),
+        title: Text(title, style: const TextStyle(color: Color(0xFF45735D), fontWeight: FontWeight.bold, fontSize: 24)),
+        trailing: Container(
+          padding: const EdgeInsets.all(4),
+          decoration: const BoxDecoration(color: Color(0xFF67A185), shape: BoxShape.circle),
+          child: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
+        ),
+        childrenPadding: const EdgeInsets.only(left: 70, bottom: 20),
+        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+        children: children,
+      ),
+    );
+  }
+
+  void editWindow() {
+    editControlling.text = name;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Edit Profile"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(controller: editControlling, decoration: const InputDecoration(labelText: "Name")),
+          ],
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
+          ElevatedButton(
+            onPressed: () {
+              setState(() => name = editControlling.text);
+              Navigator.pop(context);
+            },
+            child: const Text("Save"),
+          ),
+        ],
+      ),
     );
   }
 }

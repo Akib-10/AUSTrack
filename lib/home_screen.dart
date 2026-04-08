@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'profile_screen.dart';
 
 class Homepage extends StatelessWidget {
@@ -27,11 +26,11 @@ class Homepage extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 0.0, right: 25.0),
             child: Text(
-              "Hello\nWelcome Abrar!",
-              style: GoogleFonts.trispace(
-                fontSize: 18,
-                color: Colors.black87
-              )
+                "Hello\nWelcome Abrar!",
+                style: GoogleFonts.trispace(
+                    fontSize: 18,
+                    color: Colors.black87
+                )
             ),
           ),
 
