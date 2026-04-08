@@ -36,7 +36,7 @@ class _profileState extends State<profile> {
         ),
         actions: [
           IconButton(
-            onPressed: EditWindow, // Connect the function here
+            onPressed: EditWindow,
             icon: Icon(Icons.edit, color: Color(0XFF45735D)),
           )
         ],
@@ -53,10 +53,8 @@ class _profileState extends State<profile> {
         clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: [
-          //1.The Main Boxes(Green+White)
           Column(
             children: [
-              // Green Box
               Container(
                 height: 400,
                 width: double.infinity,
@@ -68,7 +66,9 @@ class _profileState extends State<profile> {
               ),
               const SizedBox(height: 10),
               //White Box
-              WhiteBox(),
+              Positioned(
+                  top: 500,
+                  child: WhiteBox()),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -97,11 +97,9 @@ class _profileState extends State<profile> {
                   ],
                 ),
               ),
-              //const SizedBox(height: 50), // Extra space at bottom for scrolling
             ],
           ),
 
-          // 2. THE PROFILE PICTURE
           Positioned(
             top: 120,
             child: Container(
@@ -117,7 +115,6 @@ class _profileState extends State<profile> {
             ),
           ),
 
-          // 3. THE NAME BOX
           Positioned(
             top: 380,
             left: 45,
@@ -163,8 +160,8 @@ class _profileState extends State<profile> {
         boxShadow: [
           BoxShadow(
             color: Colors.black,
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            blurRadius: 1,
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -187,7 +184,7 @@ class _profileState extends State<profile> {
         Text(label, style: TextStyle(color: Color(0XFF45735D), fontSize: 18)),
         const SizedBox(height: 4),
         Text(info, style: const TextStyle(
-          color: Color(0xFF45735D), // Dark green-ish color from your image
+          color: Color(0xFF45735D),
           fontWeight: FontWeight.bold,
           fontSize: 24,
         )),
@@ -229,7 +226,7 @@ class _profileState extends State<profile> {
         trailing: Container(
           padding: const EdgeInsets.all(4),
           decoration: const BoxDecoration(
-            color: Color(0xFF67A185), // Green circle
+            color: Color(0xFF67A185),
             shape: BoxShape.circle,
           ),
           child: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
