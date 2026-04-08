@@ -162,7 +162,7 @@ class _profileState extends State<profile> {
         borderRadius: BorderRadius.circular(25.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black,
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
