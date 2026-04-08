@@ -9,16 +9,18 @@ class BusPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFB7CED3),
+
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
+        preferredSize: Size.fromHeight(55),
         child: AppBar(
           backgroundColor: Colors.white,
+
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
+            icon: Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
-            "Transport",
+
+          title: Text("Transport",
             style: TextStyle(
               color: Color(0xff407362),
               fontSize: 24,
@@ -27,17 +29,16 @@ class BusPage extends StatelessWidget {
           ),
         ),
       ),
+
       body: Column(
         children: [
-          Image.asset(
-            "assets/images/bus_expanded.png",
+          Image.asset("assets/images/bus_expanded.png",
             width: double.infinity,
             height: 200.0,
             fit: BoxFit.cover,
           ),
           Container(height: 7.0, color: Colors.white),
           const SizedBox(height: 25),
-
 
           Expanded(
             child: Stack(
