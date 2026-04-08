@@ -110,7 +110,7 @@ class _profileState extends State<profile> {
               ),
               child: CircleAvatar(
                 radius: 100,
-                backgroundImage: NetworkImage('Assets/Images/ProfilePic.jpeg'), // Use the variable
+                backgroundImage: NetworkImage('Assets/Images/ProfilePic.jpeg'),
               ),
             ),
           ),
@@ -126,13 +126,13 @@ class _profileState extends State<profile> {
               margin: EdgeInsets.symmetric(horizontal: 10),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFF67A185), // Lighter Green
+                color: const Color(0xFF67A185),
                 borderRadius: BorderRadius.circular(50),
                 border: Border.all(color: Colors.white, width: 4),
               ),
               child: Center(
                 child: Text(
-                  name, // Use the variable
+                  name,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
