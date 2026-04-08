@@ -116,6 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: const Color(0xFF67A185),
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(color: Colors.white, width: 4),
+
               ),
               child: Center(
                 child: Text(
