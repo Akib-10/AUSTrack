@@ -2,6 +2,7 @@ import 'package:aust_track/bottomnavigation_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:aust_track/services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'register_page.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +19,23 @@ class _LoginScreenState extends State<LoginScreen> {
   final AuthService _authService = AuthService();
   bool _isLoading = false;
   bool _rememberMe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRememberMe();
+  }
+
+  Future<void> _loadRememberMe() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _rememberMe = prefs.getBool('remember_me') ?? false;
+      if (_rememberMe) {
+        _emailController.text = prefs.getString('saved_email') ?? '';
+        _passwordController.text = prefs.getString('saved_password') ?? '';
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -39,6 +57,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       await _authService.signIn(email: email, password: password);
+
+      final prefs = await SharedPreferences.getInstance();
+      if (_rememberMe) {
+        await prefs.setBool('remember_me', true);
+        await prefs.setString('saved_email', email);
+        await prefs.setString('saved_password', password);
+      } else {
+        await prefs.clear();
+      }
 
       if (!mounted) return;
       Navigator.pushReplacement(
@@ -85,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Column(
-
         children: [
           ClipPath(
             clipper: WaveClipper(),

@@ -67,7 +67,7 @@ class _NavigationState extends State<Navigation> {
             ),
             GButton(
               icon: Icons.directions_bus,
-              text: 'Bus',
+              text: 'Transport',
             ),
             GButton(
               icon: Icons.note_alt_sharp,
