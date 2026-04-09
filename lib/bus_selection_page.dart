@@ -22,7 +22,7 @@ class BusSelectionPage extends StatelessWidget {
         "route": ["Farmgate", "Bijoy Sarani", "Mohakhali", "Aust"],
       },
       {
-        "name": "Meghna - 2",
+        "name": "Jamuna - 2",
         "driverNumber": "+880 1711-000002",
         "route": ["Farmgate", "Banani", "Mohakhali", "Aust"],
       },
@@ -34,27 +34,28 @@ class BusSelectionPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFB7CED3),
+      backgroundColor: Color(0xFFB7CED3),
 
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
+        preferredSize: Size.fromHeight(55),
         child: AppBar(
           backgroundColor: const Color(0xFFB7CED3),
+
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
             child: Container(
-              margin: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
                 color: Color(0xFF3E6F63),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.arrow_back_ios_new,
+              child: Icon(Icons.arrow_back_ios_new,
                   color: Colors.white, size: 18),
             ),
           ),
-          title: const Text(
+          title: Text(
             "Transport",
             style: TextStyle(
               color: Colors.black87,
@@ -71,10 +72,9 @@ class BusSelectionPage extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                // White background box
                 Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
@@ -90,13 +90,12 @@ class BusSelectionPage extends StatelessWidget {
                   ),
                 ),
 
-                // Content on top of white box
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
+                  padding: EdgeInsets.fromLTRB(25, 25, 25, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // From / To card
+
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
@@ -185,8 +184,7 @@ class BusSelectionPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             String busName = buses[index]["name"];
                             String driverNumber = buses[index]["driverNumber"];
-                            List<String> route =
-                            List<String>.from(buses[index]["route"]);
+                            List<String> route = List<String>.from(buses[index]["route"]);
 
                             return Padding(
                               padding:
@@ -215,7 +213,6 @@ class BusSelectionPage extends StatelessWidget {
 
                                   const SizedBox(width: 16),
 
-                                  // Action buttons
                                   Expanded(
                                     child: Column(
                                       children: [
@@ -251,7 +248,7 @@ class BusSelectionPage extends StatelessWidget {
                                               const EdgeInsets.symmetric(
                                                   vertical: 10),
                                             ),
-                                            child: const Text("Select",
+                                            child: Text("Select",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14)),
@@ -260,7 +257,7 @@ class BusSelectionPage extends StatelessWidget {
 
                                         const SizedBox(height: 8),
 
-                                        // Full Route button
+                                        // Full Route
                                         SizedBox(
                                           width: double.infinity,
                                           child: ElevatedButton(
@@ -274,7 +271,7 @@ class BusSelectionPage extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               20)),
                                                       title: Text(busName,
-                                                          style: const TextStyle(
+                                                          style:  TextStyle(
                                                               color: Color(
                                                                   0xFF3E6F63),
                                                               fontWeight:

@@ -21,10 +21,9 @@ class _SchedulePageState extends State<SchedulePage> {
     "08 : 30 am",
     "01 : 30 pm",
     "03 : 30 pm",
-    "05 : 00 pm",
+
     "06 : 30 pm",
-    "08 : 00 pm",
-  ];
+    ];
 
   @override
   Widget build(BuildContext context) {

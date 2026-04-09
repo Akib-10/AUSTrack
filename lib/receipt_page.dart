@@ -24,11 +24,13 @@ class ReceiptPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFB7CED3),
+
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: AppBar(
           backgroundColor: const Color(0xFFB7CED3),
           elevation: 0,
+
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Container(
@@ -51,13 +53,14 @@ class ReceiptPage extends StatelessWidget {
           ),
         ),
       ),
+
       body: Column(
         children: [
           const SizedBox(height: 10),
           Expanded(
             child: Stack(
               children: [
-                // White background
+                // White
                 Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -77,7 +80,7 @@ class ReceiptPage extends StatelessWidget {
                 ),
 
                 SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(25, 35, 25, 30),
+                  padding: EdgeInsets.fromLTRB(25, 35, 25, 30),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -90,12 +93,12 @@ class ReceiptPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        // Header
+
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 24),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Color(0xFF3E6F63),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(22),
@@ -125,10 +128,9 @@ class ReceiptPage extends StatelessWidget {
                           ),
                         ),
 
-                        // Dotted divider
                         _dottedDivider(),
 
-                        // Details
+                        // Details ekhan theeeeke addd
                         Padding(
                           padding: const EdgeInsets.all(24),
                           child: Column(
@@ -189,7 +191,7 @@ class ReceiptPage extends StatelessWidget {
                           ),
                         ),
 
-                        // Footer
+
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(vertical: 14),
@@ -202,7 +204,7 @@ class ReceiptPage extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              "Thank you for traveling with us!",
+                              "Please be present timely at your location!",
                               style: TextStyle(
                                 color: Color(0xFF3E6F63),
                                 fontSize: 13,
