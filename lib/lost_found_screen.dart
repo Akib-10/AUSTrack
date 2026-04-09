@@ -27,7 +27,7 @@ class _LostFoundPageState extends State<LostFoundPage> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
           child: Image.asset(
-            "assets/Images/app-logo.jpeg",
+            "assets/images/app-logo.png",
             height: 80.0,
             width: 80.0,
           ),
@@ -129,7 +129,7 @@ class ItemCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0XFFC9F2D9).withOpacity(0.7),
+        color: const Color(0XFFC9F2D9),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
