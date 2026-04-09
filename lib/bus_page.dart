@@ -15,7 +15,7 @@ class BusPage extends StatelessWidget {
           backgroundColor: Colors.white,
           toolbarHeight: 95.0,
           leadingWidth: 75.0,
-          automaticallyImplyLeading: false,
+
           leading: Padding(
             padding: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
             child: Image.asset(
@@ -40,7 +40,7 @@ class BusPage extends StatelessWidget {
         children: [
           Image.asset(
             "assets/images/bus_expanded.png",
-            width: double.infinity,
+             width: double.infinity,
             height: 200.0,
             fit: BoxFit.cover,
           ),
