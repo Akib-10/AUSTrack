@@ -17,13 +17,13 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
   final List<String> schedules = [
-    "08 : 00 am",
-    "10 : 00 am",
+    "06 : 00 am",
+    "08 : 30 am",
     "01 : 30 pm",
-    "03 : 00 pm",
+    "03 : 30 pm",
     "05 : 00 pm",
-    "07 : 30 pm",
-    "09 : 00 pm",
+    "06 : 30 pm",
+    "08 : 00 pm",
   ];
 
   @override
@@ -36,16 +36,19 @@ class _SchedulePageState extends State<SchedulePage> {
         preferredSize:Size.fromHeight(55),
         child: AppBar(
           backgroundColor: Color(0xFFB7CED3),
+
           leading: GestureDetector(
             onTap: () => Navigator.pop(context),
+
             child: Container(
-              margin: const EdgeInsets.all(10),
-              decoration: const BoxDecoration(
+              margin: EdgeInsets.all(10),
+              decoration:
+              BoxDecoration(
                 color: Color(0xFF3E6F63),
                 shape: BoxShape.circle,
               ),
 
-              child: const Icon(Icons.arrow_back_ios_new,
+              child: Icon(Icons.arrow_back_ios_new,
                   color: Colors.white, size: 18),
             ),
           ),
@@ -85,13 +88,12 @@ class _SchedulePageState extends State<SchedulePage> {
                   ),
                 ),
 
-                // Content
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Green location card
+
                       _LocationCard(
                         from: widget.fromLocation,
                         to: widget.toLocation,
@@ -99,7 +101,7 @@ class _SchedulePageState extends State<SchedulePage> {
 
                       const SizedBox(height: 28),
 
-                      const Text(
+                       Text(
                         "Choose Schedule",
                         style: TextStyle(
                           fontSize: 22,
@@ -110,7 +112,6 @@ class _SchedulePageState extends State<SchedulePage> {
 
                       const SizedBox(height: 14),
 
-                      // Scrollable schedule list
                       Expanded(
                         child: ListView.separated(
                           itemCount: schedules.length,
@@ -171,7 +172,9 @@ class _ScheduleItem extends StatelessWidget {
               color: Colors.black87,
             ),
           ),
+
           const Spacer(),
+
           ElevatedButton(
             onPressed: onSelect,
             style: ElevatedButton.styleFrom(
@@ -194,7 +197,6 @@ class _ScheduleItem extends StatelessWidget {
   }
 }
 
-// Reusable location card used on all pages
 class _LocationCard extends StatelessWidget {
   final String from;
   final String to;
@@ -211,13 +213,13 @@ class _LocationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             children: [
               const Icon(Icons.location_on, color: Colors.white),
               Container(
-                height: 40,
+                height: 100,
                 width: 2,
                 color: Colors.white54,
               ),
@@ -229,13 +231,21 @@ class _LocationCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("From",
-                    style: TextStyle(color: Colors.white70, fontSize: 13)),
+                Text("From",
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13
+                    )
+                ),
                 const SizedBox(height: 4),
                 _locationBox(from),
                 const SizedBox(height: 12),
-                const Text("To",
-                    style: TextStyle(color: Colors.white70, fontSize: 13)),
+                Text("To",
+                    style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13
+                    )
+                ),
                 const SizedBox(height: 4),
                 _locationBox(to),
               ],
@@ -249,14 +259,17 @@ class _LocationCard extends StatelessWidget {
   Widget _locationBox(String text) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding:EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFF5A8C7E),
+        color: Color(0xFF5A8C7E),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Text(
         text,
-        style: const TextStyle(color: Colors.white, fontSize: 15),
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 15
+        ),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'schedule_page.dart';
 
-
 class BusPage extends StatelessWidget {
   const BusPage({super.key});
 
@@ -11,16 +10,23 @@ class BusPage extends StatelessWidget {
       backgroundColor: const Color(0xFFB7CED3),
 
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(55),
+        preferredSize: const Size.fromHeight(95.0),
         child: AppBar(
           backgroundColor: Colors.white,
-
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Color(0xff407362)),
-            onPressed: () => Navigator.pop(context),
+          toolbarHeight: 95.0,
+          leadingWidth: 75.0,
+          automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 25.0, top: 25.0, bottom: 25.0),
+            child: Image.asset(
+              "assets/images/app-logo.png",
+              height: 80.0,
+              width: 80.0,
+            ),
           ),
-
-          title: Text("Transport",
+          centerTitle: false,
+          title: const Text(
+            "Transport",
             style: TextStyle(
               color: Color(0xff407362),
               fontSize: 24,
@@ -32,7 +38,8 @@ class BusPage extends StatelessWidget {
 
       body: Column(
         children: [
-          Image.asset("assets/images/bus_expanded.png",
+          Image.asset(
+            "assets/images/bus_expanded.png",
             width: double.infinity,
             height: 200.0,
             fit: BoxFit.cover,
@@ -46,11 +53,11 @@ class BusPage extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
                       topRight: Radius.circular(50),
                     ),
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
                         blurRadius: 6,
@@ -60,24 +67,15 @@ class BusPage extends StatelessWidget {
                   ),
                 ),
 
-                Positioned(
-                  top: 30,
-                  left: 35,
-                  right: 35,
-                  child: LocationCard(),
-                ),
+                Positioned(top: 30, left: 35, right: 35, child: LocationCard()),
               ],
             ),
           ),
-
-
-          
         ],
       ),
     );
   }
 }
-
 
 class LocationCard extends StatefulWidget {
   const LocationCard({super.key});
@@ -88,8 +86,19 @@ class LocationCard extends StatefulWidget {
 
 class _LocationCardState extends State<LocationCard> {
   final List<String> places = [
-    "Mirpur", "Ansar Camp","Technical","Kalyanpur", "Shyamoli","Ring Road","Shia Mashjid",
-    "Mohammadpur","Asadgate","Manik Mia","Khamar Bari","Farmgate"];
+    "Mirpur",
+    "Ansar Camp",
+    "Technical",
+    "Kalyanpur",
+    "Shyamoli",
+    "Ring Road",
+    "Shia Mashjid",
+    "Mohammadpur",
+    "Asadgate",
+    "Manik Mia",
+    "Khamar Bari",
+    "Farmgate",
+  ];
 
   String? selectedFrom;
   String? selectedTo;
@@ -98,9 +107,9 @@ class _LocationCardState extends State<LocationCard> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF3E6F63),
+        color: Color(0xFF3E6F63),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -108,10 +117,10 @@ class _LocationCardState extends State<LocationCard> {
         children: [
           Column(
             children: [
-              const SizedBox(height: 10.0),
-              const Icon(Icons.location_on, color: Colors.white),
+              //SizedBox(height: 10.0),
+              Icon(Icons.location_on, color: Colors.white),
               Container(height: 100, width: 2, color: Colors.white70),
-              const Icon(Icons.location_on_outlined, color: Colors.white),
+              Icon(Icons.location_on_outlined, color: Colors.white),
             ],
           ),
           const SizedBox(width: 12),
@@ -125,15 +134,17 @@ class _LocationCardState extends State<LocationCard> {
                 _buildDropdown("To", selectedTo, (value) {
                   setState(() => selectedTo = value);
                   if (selectedFrom != null && value != null) {
-                    Future.microtask(() => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => SchedulePage(
-                          fromLocation: selectedFrom!,
-                          toLocation: value,
+                    Future.microtask(
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => SchedulePage(
+                            fromLocation: selectedFrom!,
+                            toLocation: value,
+                          ),
                         ),
                       ),
-                    ));
+                    );
                   }
                 }),
               ],
@@ -145,41 +156,41 @@ class _LocationCardState extends State<LocationCard> {
   }
 
   Widget _buildDropdown(
-      String label,
-      String? selectedValue,
-      ValueChanged<String?> onChanged,
-      ) {
+    String label,
+    String? selectedValue,
+    ValueChanged<String?> onChanged,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white70, fontSize: 14),
-        ),
-        const SizedBox(height: 6),
+        Text(label, style: TextStyle(color: Colors.white70, fontSize: 14)),
+        SizedBox(height: 6),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: const Color(0xFF5A8C7E),
+            color: Color(0xFF5A8C7E),
             borderRadius: BorderRadius.circular(30),
           ),
           child: DropdownButton<String>(
             value: selectedValue,
-            hint: const Text(
+            hint: Text(
               "Select location",
               style: TextStyle(color: Colors.white60, fontSize: 14),
             ),
             isExpanded: true,
-            underline: const SizedBox(),
+            underline: SizedBox(),
+
             dropdownColor: const Color(0xFF3E6F63),
-            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-            style: const TextStyle(color: Colors.white, fontSize: 14),
-            items: places.map((place) {
-              return DropdownMenuItem<String>(
-                value: place,
-                child: Text(place),
-              );
-            }).toList(),
+
+            icon:  Icon(Icons.keyboard_arrow_down, color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 14),
+            items: [
+              for (String place in places)
+                DropdownMenuItem<String>(
+                  value: place,
+                  child: Text(place),
+                ),
+            ],
             onChanged: onChanged,
           ),
         ),
